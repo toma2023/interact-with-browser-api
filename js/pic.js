@@ -6,15 +6,15 @@ const addProduct = () => {
     productField.value = '';
     quantityField.value = '';
 
-
-   // console.log(product, quantity);
+  //  console.log(product, quantity);
     displayProduct(product, quantity);
-    saveProductToLocalStorage(product, quantity)
+    saveProductToLocalStorage(product, quantity);
+
 }
 const displayProduct = (product, quantity) => {
-    const ul = document.getElementById('product-container');
-    const li = document.createElement('li');
-    li.innerText = `${product}: ${quantity} `;
+    const ul = document.getElementById('product-container')
+    const li = document.createElement('li')
+    li.innerText = `${product}:${quantity} `
     ul.appendChild(li);
 }
 const getStoredShoppingCart = () => {
@@ -24,21 +24,22 @@ const getStoredShoppingCart = () => {
         cart = JSON.parse(storedCart);
     }
     return cart;
+
+
 }
 const saveProductToLocalStorage = (product, quantity) => {
 const cart = getStoredShoppingCart();
 cart[product] = quantity;
-const cartStringified = JSON.stringify(cart)
+const cartStringified = JSON.stringify(cart);
 localStorage.setItem('cart', cartStringified)
-
+//console.log(cartStringified);
 }
 const displayProductsFromLocalStorage = () =>{
     const savedCart = getStoredShoppingCart();
-    console.log(savedCart);
     for(const product in savedCart){
-        const quantity = savedCart[product]
-        console.log(product, quantity);
-        displayProduct(product, quantity);
+       const quantity = savedCart[product];
+       console.log(product, quantity);
+       displayProduct(product, quantity);
     }
 }
-displayProductsFromLocalStorage();
+displayProductsFromLocalStorage ();
